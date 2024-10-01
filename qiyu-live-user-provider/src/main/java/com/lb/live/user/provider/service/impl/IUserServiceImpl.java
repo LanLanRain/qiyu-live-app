@@ -22,4 +22,20 @@ public class IUserServiceImpl implements IUserService {
         UserDTO convertedDTO = ConvertBeanUtils.convert(userPO, UserDTO.class);
         return convertedDTO;
     }
+
+    @Override
+    public boolean updateUserInfo(UserDTO userDTO) {
+        if (userDTO.getUserId() == null || userDTO != null) {
+            return false;
+        }
+        return userMapper.updateById(ConvertBeanUtils.convert(userDTO, UserPO.class)) > 0;
+    }
+
+    @Override
+    public boolean insertOne(UserDTO userDTO) {
+        if (userDTO.getUserId() == null || userDTO == null) {
+            return false;
+        }
+        return userMapper.insert(ConvertBeanUtils.convert(userDTO, UserPO.class)) > 0;
+    }
 }

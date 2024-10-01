@@ -14,14 +14,25 @@ public class UserController {
     @DubboReference(timeout = 5000)
     private IUserRpc userRpc;
 
-    @GetMapping(value = "/getUserInfo")
-    public UserDTO getUserInfo(Long userId) {
-        return userRpc.getByUserId(userId);
-    }
-
     @GetMapping(value = "/test")
     public String test(){
         userRpc.test();
         return "success";
     }
+
+    @GetMapping(value = "/insertOne")
+    public boolean insertOne(Long userId, String nickName) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUserId(userId);
+        userDTO.setNickName(nickName);
+        return userRpc.insertOne(userDTO);
+    }
+    @GetMapping(value = "/updateUserInfo")
+    public boolean updateUserInfo(Long userId, String nickName) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUserId(userId);
+        userDTO.setNickName(nickName);
+        return userRpc.updateUserInfo(userDTO);
+    }
+
 }

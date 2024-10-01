@@ -22,4 +22,14 @@ public class UserRpcImpl implements IUserRpc {
     public UserDTO getByUserId(Long userId) {
         return userService.getByUserId(userId);
     }
+
+    @Override
+    public boolean updateUserInfo(UserDTO userDTO) {
+        return userService.updateUserInfo(userDTO);
+    }
+
+    @Override
+    public boolean insertOne(UserDTO userDTO) {
+        return userService.insertOne(userDTO);
+    }
 }

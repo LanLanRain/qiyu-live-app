@@ -10,4 +10,20 @@ public interface IUserService {
      * @return
      */
     UserDTO getByUserId(Long userId);
+
+    /**
+     * 用户信息更新
+     *
+     * @param userDTO
+     * @return
+     */
+    boolean updateUserInfo(UserDTO userDTO);
+
+    /**
+     * 插入用户信息
+     *
+     * @param userDTO
+     * @return
+     */
+    boolean insertOne(UserDTO userDTO);
 }
