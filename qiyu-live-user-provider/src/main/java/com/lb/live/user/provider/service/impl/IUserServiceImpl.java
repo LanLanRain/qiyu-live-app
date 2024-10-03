@@ -1,10 +1,10 @@
 package com.lb.live.user.provider.service.impl;
 
+import com.lb.live.common.interfaces.utils.ConvertBeanUtils;
 import com.lb.live.user.interfaces.dto.UserDTO;
 import com.lb.live.user.provider.dao.mapper.IUserMapper;
 import com.lb.live.user.provider.dao.po.UserPO;
 import com.lb.live.user.provider.service.IUserService;
-import com.lb.live.user.provider.utils.ConvertBeanUtils;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 

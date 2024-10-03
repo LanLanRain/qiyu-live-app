@@ -1,4 +1,8 @@
-DELIMITER ;;
+create database qiyu_live_user character set utf8mb3 collate utf8_bin;
+
+use qiyu_live_user;
+
+DELIMITER ;
 CREATE
     DEFINER = `root`@`%` PROCEDURE `create_t_user_100`()
 BEGIN
