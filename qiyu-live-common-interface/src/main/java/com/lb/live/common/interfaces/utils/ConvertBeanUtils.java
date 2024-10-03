@@ -1,4 +1,4 @@
-package com.lb.live.user.provider.utils;
+package com.lb.live.common.interfaces.utils;
 
 import org.springframework.beans.BeanInstantiationException;
 import org.springframework.beans.BeanUtils;
