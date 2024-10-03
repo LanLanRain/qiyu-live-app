@@ -1,6 +1,6 @@
 package com.lb.live.api.controller;
 
-import com.lb.live.user.interfaces.IUserRpc;
+import com.lb.live.user.interfaces.rpc.IUserRpc;
 import com.lb.live.user.interfaces.dto.UserDTO;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.GetMapping;

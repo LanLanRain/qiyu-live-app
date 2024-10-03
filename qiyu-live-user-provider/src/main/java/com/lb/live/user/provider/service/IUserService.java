@@ -2,6 +2,9 @@ package com.lb.live.user.provider.service;
 
 import com.lb.live.user.interfaces.dto.UserDTO;
 
+import java.util.List;
+import java.util.Map;
+
 public interface IUserService {
     /**
      * 根据用户id进行查询
@@ -26,4 +29,6 @@ public interface IUserService {
      * @return
      */
     boolean insertOne(UserDTO userDTO);
+
+    Map<Long, UserDTO> batchQueryUserInfo(List<Long> userIdList);
 }

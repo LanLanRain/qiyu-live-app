@@ -1,6 +1,9 @@
-package com.lb.live.user.interfaces;
+package com.lb.live.user.interfaces.rpc;
 
 import com.lb.live.user.interfaces.dto.UserDTO;
+
+import java.util.List;
+import java.util.Map;
 
 public interface IUserRpc {
 
@@ -29,4 +32,12 @@ public interface IUserRpc {
      * @return
      */
     boolean insertOne(UserDTO userDTO);
+
+    /**
+     * 批量查询用户信息
+     *
+     * @param userIdList
+     * @return
+     */
+    Map<Long,UserDTO> batchQueryUserInfo(List<Long> userIdList);
 }

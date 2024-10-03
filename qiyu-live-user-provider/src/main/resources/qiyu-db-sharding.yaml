@@ -5,13 +5,6 @@ dataSources:
     jdbcUrl: jdbc:mysql://127.0.0.1:3306/qiyu_live_user?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true
     username: root
     password: mysql_1120
-    idle-timeout: 5 #单位：分钟
-    minimum-idle: 100
-    pool-name: qiyu-db-user
-    maximum-pool-size: 300
-    connection-timeout: 30000
-    connection-init-sql: SELECT 1
-    connection-test-query: SELECT 1
 
 rules:
   - !SINGLE

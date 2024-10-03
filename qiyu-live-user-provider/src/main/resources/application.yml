@@ -21,3 +21,14 @@ dubbo:
   protocol:
     name: dubbo
     port: 9091
+
+qiyu:
+  rmq:
+    producer:
+      namesrvAddr: 123.60.49.130:9876
+      producerGroup: ${spring.application.name}
+      retryTimes: 3
+      sendTimeOut: 3000
+    consumer:
+      nameSrv: 123.60.49.130:9876
+      consumerGroup: ${spring.application.name}
