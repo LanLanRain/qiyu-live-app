@@ -12,6 +12,16 @@ spring:
       connection-timeout: 4000
       max-lifetime: 60000
       idle-timeout: 60000
+  data:
+    redis:
+      host: 123.60.49.130
+      port: 6379
+      password: redis_1120
+      lettuce:
+        pool:
+          min-idle: 10   #最小空闲连接
+          max-active: 50  #最大连接
+          max-idle: 20   #最大空闲连接
 
 dubbo:
   application:
@@ -30,5 +40,5 @@ qiyu:
       retryTimes: 3
       sendTimeOut: 3000
     consumer:
-      nameSrv: 123.60.49.130:9876
+      namesrvAddr: 123.60.49.130:9876
       consumerGroup: ${spring.application.name}

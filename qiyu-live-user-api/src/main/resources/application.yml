@@ -1,6 +1,6 @@
 spring:
   application:
-    name: qiyu-live-user-api
+    name: qiyu-live-user-api-application
 
 dubbo:
   application:
