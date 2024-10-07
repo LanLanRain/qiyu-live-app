@@ -95,7 +95,10 @@
             <artifactId>rocketmq-client</artifactId>
             <version>${rocketmq.client.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
