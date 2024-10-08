@@ -10,7 +10,7 @@ import java.util.Date;
 
 @TableName("t_user_tag")
 @Data
-public class UserTagPo {
+public class UserTagPO {
     
     @TableId(type = IdType.INPUT)
     private Long userId;

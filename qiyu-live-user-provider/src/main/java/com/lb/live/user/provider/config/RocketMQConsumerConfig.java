@@ -2,7 +2,8 @@ package com.lb.live.user.provider.config;
 
 import com.alibaba.fastjson.JSON;
 import com.lb.live.common.interfaces.topic.UserProviderTopicNames;
-import com.lb.live.user.interfaces.dto.UserDTO;
+import com.lb.live.user.interfaces.constants.CacheAsyncDeleteCode;
+import com.lb.live.user.interfaces.dto.UserCacheAsyncDeleteDTO;
 import com.lb.qiyu.live.framework.redis.starter.key.UserProviderCacheKeyBuilder;
 import jakarta.annotation.Resource;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
@@ -63,19 +64,17 @@ public class RocketMQConsumerConfig implements InitializingBean {
 
             // 注册一个消息侦听器来处理传入的消息
             defaultMQPushConsumer.setMessageListener((MessageListenerConcurrently) (msgs, context) -> {
-                String msgStr = new String(msgs.get(0).getBody());
-                UserDTO userDTO = JSON.parseObject((String) JSON.parseObject(msgStr).get("json"), UserDTO.class);
-
-                // 检查用户 ID 是否为空或空
-                if (userDTO == null || userDTO.getUserId() == null) {
-                    LOGGER.error("用户id为空，参数异常，内容:{}", msgStr);
-                    return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+                String json = new String(msgs.get(0).getBody());
+                UserCacheAsyncDeleteDTO userCacheAsyncDeleteDTO = JSON.parseObject(json, UserCacheAsyncDeleteDTO.class);
+                if (CacheAsyncDeleteCode.USER_INFO_DELETE.getCode() == userCacheAsyncDeleteDTO.getCode()) {
+                    Long userId = JSON.parseObject(userCacheAsyncDeleteDTO.getJson()).getLong("userId");
+                    redisTemplate.delete(userProviderCacheKeyBuilder.buildUserInfoKey(userId));
+                    LOGGER.info("延迟删除用户信息缓存，userId is {}", userId);
+                } else if (CacheAsyncDeleteCode.USER_TAG_DELETE.getCode() == userCacheAsyncDeleteDTO.getCode()) {
+                    Long userId = JSON.parseObject(userCacheAsyncDeleteDTO.getJson()).getLong("userId");
+                    redisTemplate.delete(userProviderCacheKeyBuilder.buildTagKey(userId));
+                    LOGGER.info("延迟删除用户标签缓存，userId is {}", userId);
                 }
-
-                // 使用用户 ID 执行缓存删除操作
-                redisTemplate.delete(userProviderCacheKeyBuilder.buildUserInfoKey(userDTO.getUserId()));
-
-                LOGGER.info("延迟删除处理成功，userDTO is {}", userDTO);
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             });
 
